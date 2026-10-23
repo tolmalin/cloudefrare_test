@@ -1,5 +1,5 @@
 {
-  "name": "cloudefrare_test",
+  "name": "cloudefrare-test",
   "version": "1.0.0",
   "description": "cloudefrareのテスト",
   "homepage": "https://github.com/tolmalin/cloudefrare_test#readme",
@@ -12,9 +12,14 @@
   },
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^8.0.4",
+    "wrangler": "^4.68.0"
   }
 }
