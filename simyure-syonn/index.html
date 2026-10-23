@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="src/assets/svg+xml" href="/favicon.svg" /> -->
+     <link rel="icon" type="src/assets/ico" href="/Earth_Favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="haiti.css"> 
+    <title>simyure-syonn</title>
+  </head>
+  <body>
+    <img id="bcscreen" src="src/assets/testbcimg.png">
+    <div id="home" class="screen">
+      <div id=menu_bar class="hidden">
+        <button id=fight class="menu">fight!</button> 
+        <div id="fight_list" class="hidden">
+          <input id="fighter1" placeholder="戦わせる世界のナンバーを半角で入力(｀・ω・´)">  <!--kari　jsで変更するようにする  今機能なし-->
+          <input id="fighter2" placeholder="戦わせる世界のナンバーを半角で入力(｀・ω・´)">
+          <button>決定!</button>
+        </div>
+      </div>
+      <div id="Worlds"></div>
+
+      <button id="createWorld_button">作成</button>
+
+      <script type="module" src="script_for_fes.js" defer></script>
+
+      <!-- <div id="app"></div> ???-->
+      <!-- <script type="module" src="/src/main.js"></script> 　React入ってたから放置-->
+    </div>
+
+    <div id="game" class="screen hidden">
+      <div class="screen main">
+
+        <!-- 通常時に表示されるまとまり -->
+        <div id="normal_view">
+          <button class="reset">reset</button>
+          <div id="lvup_div"></div>
+          <p class="status"></p>
+        </div>
+
+        <!-- ボス戦時に表示されるまとまり -->
+        <div id="boss_view">
+          <p id="boss_name_lbl"></p>
+          <div id="hpbar_outer">
+            <div id="hpbar_inner"></div>
+          </div>
+          <div id="battle_stage">
+            <img id="battle_earth_img" class="battle_img" alt="earth">
+            <img id="battle_boss_img" class="battle_img" alt="boss">
+          </div>
+          <p class="status"></p>
+        </div>
+
+      </div>
+
+      <aside class="screen sub">
+        <button id="game_logbutton"><img src="src/assets/menu_img.png"></button>
+        <div id="game_loglist" class="hidden"></div>
+      </aside>
+
+      <!-- ポップアップ層：mainの外・gameの直下に置く -->
+      <div id="event_selector" class="screen"></div>
+    </div>
+
+    <div id="disp_result" class="screen hidden"></div>
+  </body>
+</html>

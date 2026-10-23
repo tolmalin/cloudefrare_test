@@ -1,0 +1,341 @@
+html {
+    background-color: #b4b4b4;
+    border: 1px solid #dadada;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body #bcscreen {
+    z-index: 0;
+}
+   
+button {
+    border: 0px;
+    margin: 5px;
+    /* background-color: #000000; */
+}
+
+#bcscreen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#home {
+    inset: 0;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+#Worlds {
+    display: flex;
+    flex: 1 1 0;
+    flex-wrap: wrap; /*?????? おそらくエラー*/
+    min-width: 0;
+    /* align-items: center; */
+    overflow-x: auto;
+    padding: initial;
+    padding: 10px 0;
+    align-content: flex-start;
+    & div {
+        padding: initial;
+        justify-content: center;
+        display: flex;
+        flex-flow: column;
+        min-width: 400px;
+        max-width: 400px;
+        & img {
+            object-fit: contain;
+        }
+    }
+    & button {
+        padding: 10px;
+    }
+    align-items: flex-end;
+    
+}
+
+#Worlds::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: #dadada;
+}
+
+#Worlds::-webkit-scrollbar-thumb {
+    background: #200770;
+}
+
+.world_img {
+    width: 100%;
+    height: auto;
+}
+
+#createWorld_button {
+    margin-top: 2em;
+    width: 500px;
+    height: auto;
+}
+/* div {
+    color: black;
+    padding: 100px;
+    height: 100%;
+} */
+
+#menu_bar {
+    height: 7%;
+    width: 100%;
+    border: 2px;
+}
+
+.menu {
+    height: 100%;
+    width: auto;
+    min-width: 100px;
+}
+
+#fight_list {
+    display: flex;
+    align-items: center;
+}
+
+#fight {
+    height: 100%;
+}
+
+#game #battle_stage {
+    min-width: 0px;
+}
+
+#game {
+    height: 100dvh;
+    display: flex;
+    overflow: hidden;
+    & .main {
+        display: flex;
+        flex: 1;
+        min-width: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        padding: 10px;
+        box-sizing: border-box; /*おそらく枠線*/
+    }
+    & .sub {
+        width: 260px;
+        transition: light 1s ease;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        padding: 10px;
+        box-sizing: border-box;
+        img {
+            z-index: 5;
+            width: initial;
+            width: 5em;
+            min-width: 5em;
+            height: auto;
+            min-height: 5em;
+            top: 20px;
+            left: 20px;
+        }
+    }
+}
+
+#normal_view img {
+    min-width: 400px;
+    max-width: 400px;
+}
+
+#game_loglist {
+    flex: 1 1 0;
+    overflow-y: auto;
+    min-height: 0;
+    margin: 0;
+    & .game_log {
+        margin: 4px 0;
+    }
+}
+
+#game_logbutton {
+    img {
+        object-fit: contain;
+    }
+}
+
+.gameworld_img {
+    max-width: 100%;
+    max-height: 40vh;
+    object-fit: contain;
+}
+
+/*　---ボス戦モードへの切り替え---　*/
+#boss_view {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+#nomal_view {
+    flex-direction: column;
+}
+
+#game.boss_mode #normal_view {
+    display: none;
+}
+
+#game.boss_mode #boss_view {
+    display: flex;
+}
+
+#event_selector {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    pointer-events: none;
+    margin: 0;
+    background-color: initial; /*背景画像とかつけるならpaddingとbccolorつける　今はとりあえずなし*/
+    gap: 6px;
+}
+
+.event_selector {
+    margin: 0;
+    padding: 3px, 9px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    border-radius: 8px;
+    white-space: nowrap;
+    animation: event_popup_in 0.3s ease-out;
+}
+
+.event_fadeout {
+    animation: event_popup_out 0.4s ease-in forwards;
+}
+
+/*eventpopupアニメーション*/
+@keyframes event_popup_in {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes event_popup_out {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(12px); }
+}
+
+
+#status {
+    margin-block-start: initial;
+    margin-block-end: initial;
+    display: flex;
+    justify-content: center;
+    & div {
+        border-left: 2px solid #5d5d5dca;
+        padding-left: 10px;
+        padding-right: 50px;
+    }
+    & p {
+        margin-block-start: initial;
+        margin-block-end: initial;
+    }
+}
+
+/* HPバーの外枠 */
+#boss_hpbar_outer {
+    width: 300px;
+    height: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #ddd;
+    overflow: hidden; /* 中身がはみ出さないように */
+}
+
+/* HPバーの中身（伸縮する部分） */
+#boss_hpbar_inner {
+    height: 100%;
+    width: 100%; /* JSでこの%を毎ターン書き換える */
+    background-color: #e74c3c;
+    transition: width 0.4s ease-out; /* ここが「滑らかに減る」演出の肝 */
+}
+
+/* HPが減ってきたら色を変えたい場合用（任意） */
+#boss_hpbar_inner.low {
+    background-color: #f39c12;
+}
+#boss_hpbar_inner.critical {
+    background-color: #c0392b;
+}
+
+/* ログのフェードインアニメーション */
+.boss_log {
+    animation: log_fadein 0.4s ease-out;
+}
+
+@keyframes log_fadein {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#battle_stage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 320px;
+    margin: 10px auto;
+}
+
+.battle_img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    /* transformの変化を滑らかにする */
+    transition: transform 0.25s ease-in-out;
+}
+
+/* screenないとgameあたりのposition: absolute;系がめっちゃムズイ */
+.screen {
+  position: absolute;
+  inset: 0;
+
+  transition: opacity 0.5s ease;
+}
+
+.screen.hidden {
+  opacity: 0;
+  pointer-events: none !important; /*importantないとエラー起きた*/
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none !important;
+}
+
+/* 
+z-index表
+    5 = 一番 前
+    4 = UI系？
+    3 = 好き勝手に
+    2 = 好き勝手に
+    1 = 一番 後ろ 
+*/
