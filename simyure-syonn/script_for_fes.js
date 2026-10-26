@@ -41,7 +41,6 @@ let last_status_html = "";
 let buff = [1,1,1]; //population,research,militaryの順
 let boss_moto = Date.now();
 let boss_result = true
-let K_popl = false
 
 function rand_mag(base_mag) {
     const mag = base_mag + (Math.random() * 0.06 - 0.03);
@@ -117,6 +116,9 @@ function game_event() {
 
 // K_head_fst = ["この世のすべての ","混沌の",]
 
+let K_popl = false
+let K_mil = false
+let K_boss = false
 
 function K_check() {
     let K_name = ""
