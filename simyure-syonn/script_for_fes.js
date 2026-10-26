@@ -115,7 +115,7 @@ function game_event() {
     add_log(`<p class="game_log event_log">${eventtext}</p>`);
 }
 
-K_head_fst = ["この世のすべての ","混沌の",]
+// K_head_fst = ["この世のすべての ","混沌の",]
 
 
 function K_check() {
