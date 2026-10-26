@@ -126,7 +126,7 @@ function K_check() {
         if (world_status["population"] >= 500000) {
             world_status["kings"] += 1
             K_popl = true
-            K_name = ""
+            K_name = "king1"
         }
     }
     if (K_mil == false) {
@@ -138,7 +138,7 @@ function K_check() {
     if (K_boss == false) {
         if (world_status["boss_num"] >= 10) {
             world_status["kings"] += 1
-            K_name = ""
+            K_name = "king3"
         }
     }
     // ...
