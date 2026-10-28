@@ -125,20 +125,22 @@ function K_check() {
     if (K_popl == false) {
         if (world_status["population"] >= 500000) {
             world_status["kings"] += 1
+            K_name = "sol"
             K_popl = true
-            K_name = "king1"
         }
     }
     if (K_mil == false) {
         if (world_status["military"] >= 200000) {
-            world_status["kings"] += 1
-            K_name = "水谷優"
+            world_status["kings"] += 1;
+            K_name = "水谷優";
+            K_mil = true;
         }
     }
     if (K_boss == false) {
         if (world_status["boss_num"] >= 10) {
-            world_status["kings"] += 1
-            K_name = "king3"
+            world_status["kings"] += 1;
+            K_name = "The Amalgamation";
+            K_boss = true;
         }
     }
     // ...
@@ -286,8 +288,8 @@ function update_boss_hpbar(boss) {
 
 // 地球がボスに攻撃する演出　下のと合成できないかな？　dfside_img,dfside_dmgimg   checkpoint
 async function earth_attack_animation(boss_num) {
-    const normal_src = `src/assets/Boss_${boss_num}.png`;
-    const dmg_src = `src/assets/Boss_${boss_num}_dmg.png`;
+    const normal_src = `public/assets/Boss_${boss_num}.png`;
+    const dmg_src = `public/assets/Boss_${boss_num}_dmg.png`;
 
     battle_earth_img.style.transform = "translateX(90px)";
     await sleep(150);
@@ -302,8 +304,8 @@ async function earth_attack_animation(boss_num) {
 
 // ボスが地球に攻撃する演出
 async function boss_attack_animation(world_num) {
-    const normal_src = `src/assets/Earth_${world_num}.png`; // "image/Earth ${world_num}.png" から修正
-    const dmg_src = `src/assets/Earth_${world_num}_dmg.png`;
+    const normal_src = `public/assets/Earth_${world_num}.png`; // "image/Earth ${world_num}.png" から修正
+    const dmg_src = `public/assets/Earth_${world_num}_dmg.png`;
 
     battle_boss_img.style.transform = "translateX(-90px)";
     await sleep(150);
@@ -334,8 +336,8 @@ async function bossbattle() {
     const boss = new Boss(world_status["boss_num"]);
     const world_num = world_status["World_num"];
 
-    battle_earth_img.src = `src/assets/Earth_${world_num}.png`;
-    battle_boss_img.src = `src/assets/Boss_${world_status["boss_num"]}.png`;
+    battle_earth_img.src = `public/assets/Earth_${world_num}.png`;
+    battle_boss_img.src = `public/assets/Boss_${world_status["boss_num"]}.png`;
 
     game.classList.add("boss_mode");   //ボス戦レイアウトへ切り替え
 
@@ -488,7 +490,7 @@ async function playgame() { //引数にアイテムとかのフラグ入れる�
         "score":0,
         "boss_num":1
     };
-    const gameworld_img = `<img src="src/assets/Earth_${world_status["World_num"]}.png" alt="world" class="gameworld_img">`
+    const gameworld_img = `<img src="public/assets/Earth_${world_status["World_num"]}.png" alt="world" class="gameworld_img">`
     oldscore = 0
     moto = Date.now();
     status_text.forEach((i) => {
@@ -671,7 +673,7 @@ createworld_button.addEventListener("click", async () => {
 
         worldcompornent.innerHTML = `
             <button class="view">view status!</button>
-            <img src="src/assets/Earth_${result["World_num"]}.png" alt="world" class="homeworld_img">
+            <img src="public/assets/Earth_${result["World_num"]}.png" alt="world" class="homeworld_img">
         `;
         //img_numが範囲超えないか確認
 
