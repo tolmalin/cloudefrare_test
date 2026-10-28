@@ -2,14 +2,14 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="icon" type="src/assets/svg+xml" href="/favicon.svg" /> -->
-     <link rel="icon" type="src/assets/ico" href="/Earth_Favicon.ico" />
+    <!-- <link rel="icon" type="public/assets/svg+xml" href="/favicon.svg" /> -->
+     <link rel="icon" type="public/assets/ico" href="/Earth_Favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="haiti.css"> 
     <title>simyure-syonn</title>
   </head>
   <body>
-    <img id="bcscreen" src="src/assets/testbcimg.png">
+    <img id="bcscreen" src="public/assets/testbcimg.png">
     <div id="home" class="screen">
       <div id=menu_bar class="hidden">
         <button id=fight class="menu">fight!</button> 
@@ -22,6 +22,8 @@
       <div id="Worlds"></div>
 
       <button id="createWorld_button">作成</button>
+
+      <script type="module" src="script_for_fes.js" defer></script>
 
       <!-- <div id="app"></div> ???-->
       <!-- <script type="module" src="/src/main.js"></script> 　React入ってたから放置-->
@@ -53,7 +55,7 @@
       </div>
 
       <aside class="screen sub">
-        <button id="game_logbutton"><img src="src/assets/menu_img.png"></button>
+        <button id="game_logbutton"><img src="public/assets/menu_img.png"></button>
         <div id="game_loglist" class="hidden"></div>
       </aside>
 
@@ -62,7 +64,5 @@
     </div>
 
     <div id="disp_result" class="screen hidden"></div>
-
-    <script type="module" src="script_for_fes.js" defer></script>
   </body>
 </html>
