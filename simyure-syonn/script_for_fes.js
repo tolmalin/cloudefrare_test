@@ -15,7 +15,9 @@ const battle_boss_img = document.getElementById("battle_boss_img");
 
 let num = 0
 const species_list = ["human","beastman","engel","devil","norm"] //kari
-let lvup_list = [["population",100],["research",100],["military",100],["research_mag",0.2],["population_mag",0.2]]; //lvup選択肢
+let lvup_100 = 100
+let lvup_02 = 0.2
+let lvup_list = [["population",lvup_100],["research",lvup_100],["military",lvup_100],["research_mag",lvup_02],["population_mag",lvup_02],["military",lvup_02]]; //lvup選択肢
 let lvup_math = ["+","-"]
 
 let world_status = {
@@ -490,6 +492,7 @@ async function playgame() { //引数にアイテムとかのフラグ入れる�
         "score":0,
         "boss_num":1
     };
+    // ↑これを関数で変更するのは元とコード量が変わんなそうだからやめた
     const gameworld_img = `<img src="/assets/Earth_${world_status["World_num"]}.png" alt="world" class="gameworld_img">`
     oldscore = 0
     moto = Date.now();
@@ -565,10 +568,13 @@ async function playgame() { //引数にアイテムとかのフラグ入れる�
 
                 //bossbattle
                 const boss_ima = Date.now();
-                if ((boss_ima - boss_moto) / 1000 > Math.max(30, 60 - 10 * world_status["boss_num"])) {
+                if ((boss_ima - boss_moto) / 1000 > Math.max(30, 60 - 10 * world_status["boss_num"])) { //経過時間の秒数が一定以上ならば実行
                     boss_result = await bossbattle();
                     boss_moto = Date.now();
-                
+                    
+                    lvup_100 = 100 * world_status["boss_num"]
+                    lvup_02 = 0.2 * world_status["boss_num"]
+
                     if (boss_result === false) {
                         boss_win = false;
                     }
