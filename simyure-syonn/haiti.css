@@ -164,6 +164,9 @@ button {
     & .game_log {
         margin: 4px 0;
     }
+    & .hidden {
+        pointer-events: none;
+    }
 }
 
 #game_logbutton {

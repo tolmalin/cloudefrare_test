@@ -213,7 +213,7 @@ function lv_waitpromise() {
             button.dataset.math = math;
 
             button.textContent = `${to}が ${math} ${up}`;
-            console.log("button_data-",button.dataset.to)
+            // console.log("button_data-",button.dataset.to) test
             button.onclick = () => {
                 lvup_resolve({
                     to: button.dataset.to,
@@ -267,8 +267,15 @@ async function lvup() {
         } else if (selected.math === "-") {
             world_status[selected.to] -= selected.up
         }
-        console.log("end",world_status[selected.to])
-        
+        // console.log("end",world_status[selected.to]) //test
+
+        if (selected.math == "+") {
+            const updn = "上昇"
+        } else {
+            const updn = "減少"
+        }
+        add_log(`<p class="game_log lvup_log">レベルアップ！ lv: ${world_status["lv"]}<br>
+            ${selected.to}が${selected.up}${updn}しました。</p>`)
     }
 }
 //#endregion
@@ -444,7 +451,7 @@ function stop_display_loop() {
 }
 // #endregion
 
-async function game_result_disp() {
+function game_result_disp() {
     disp_result.innerHTML = `
     <h2>得点: ${world_status["score"]}</h2>
     <p>
@@ -469,6 +476,10 @@ async function game_result_disp() {
     Flagment.appendChild(child)
     disp_result.appendChild(Flagment)
 }
+
+// function redef_wst(...targets) {
+    
+// } //これはworldstatus初期化を考えてあきらめたやつ
 
 // #region ゲーム本体
 
