@@ -146,8 +146,10 @@ function K_check() {
         }
     }
     // ...
-
-    add_log(`<p class="game_log king_log" style="color: red">${K_name}がこの世に降り立ったぞ！</p>`)
+    
+    if (K_name != "") {
+        add_log(`<p class="game_log king_log" style="color: red">${K_name}がこの世に降り立ったぞ！</p>`)
+    }
 }
 // #endregion
 
