@@ -13,12 +13,12 @@ const hpbar_inner = document.getElementById("hpbar_inner");
 const battle_earth_img = document.getElementById("battle_earth_img");
 const battle_boss_img = document.getElementById("battle_boss_img");
 
-let num = 0
-const species_list = ["human","beastman","engel","devil","norm"] //kari
-let lvup_100 = 100
-let lvup_02 = 0.2
+let num = 0;
+const species_list = ["human","beastman","engel","devil","norm"]; //kari
+let lvup_100 = 100;
+let lvup_02 = 0.2;
 let lvup_list = [["population",lvup_100],["research",lvup_100],["military",lvup_100],["research_mag",lvup_02],["population_mag",lvup_02],["military",lvup_02]]; //lvup選択肢
-let lvup_math = ["+","-"]
+let lvup_math = ["+","-"];
 
 let world_status = {
     "World_num":Math.floor(Math.random()*4 + 1), //0~3 +1
@@ -36,13 +36,13 @@ let world_status = {
     "score":0,
     "boss_num":1
 };
-let oldscore = 0
+let oldscore = 0;
 let moto = Date.now();
 let last_tick = Date.now();
 let last_status_html = "";
 let buff = [1,1,1]; //population,research,militaryの順
 let boss_moto = Date.now();
-let boss_result = true
+let boss_result = true;
 
 function rand_mag(base_mag) {
     const mag = base_mag + (Math.random() * 0.06 - 0.03);
@@ -50,12 +50,16 @@ function rand_mag(base_mag) {
 }
 
 function choices(max) {
-    let kari = Math.floor(Math.random()*max)
-    return kari
+    let kari = Math.floor(Math.random()*max);
+    return kari;
 }
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function lvup_list_update() {
+    lvup_list = [["population",lvup_100],["research",lvup_100],["military",lvup_100],["research_mag",lvup_02],["population_mag",lvup_02],["military",lvup_02]]; //lvup選択肢
 }
  
 // ログ追加（上限を超えたら古いものから消す）
@@ -77,7 +81,7 @@ function show_event_popup(text) {
     event_selector.appendChild(child);
 
     setTimeout(() => {
-        child.classList.add("event_fadeout")
+        child.classList.add("event_fadeout");
         setTimeout(() => child.remove(), 400);
     }, 5000);
 }
@@ -101,14 +105,14 @@ function game_event() {
     else if (eventnum === 2) {
         eventtext = "イベント発生！　[巨大台風接近]";
         world_status["population"] *= 0.95;
-        world_status["research"] -= world_status["research"] / 10
+        world_status["research"] -= world_status["research"] / 10;
     }
     else if (eventnum === 3) {
         eventtext = "イベント発生！　[宇宙の法則が乱れる]";
         const keys_wld_status = Object.keys(world_status); //エラーでるよ
         const target = keys_wld_status[Math.floor(Math.random()*keys_wld_status.length)]; //エラー出ます　（種族とか選ばれたとき）
         console.log(target);
-        world_status[target] *= 2
+        world_status[target] *= 2;
     }
 
     show_event_popup(eventtext);
@@ -118,23 +122,23 @@ function game_event() {
 
 // K_head_fst = ["この世のすべての ","混沌の",]
 
-let K_popl = false
-let K_mil = false
-let K_boss = false
+let K_popl = false;
+let K_mil = false;
+let K_boss = false;
 
 function K_check() {
-    let K_name = ""
+    let K_name = "";
     if (K_popl == false) {
         if (world_status["population"] >= 500000) {
-            world_status["kings"] += 1
-            K_name = "sol"
-            K_popl = true
+            world_status["kings"] += 1;
+            K_name = "sol";
+            K_popl = true;
         }
     }
     if (K_mil == false) {
         if (world_status["military"] >= 200000) {
             world_status["kings"] += 1;
-            K_name = "水谷優";
+            K_name = "Arthur";
             K_mil = true;
         }
     }
@@ -148,7 +152,7 @@ function K_check() {
     // ...
     
     if (K_name != "") {
-        add_log(`<p class="game_log king_log" style="color: red">${K_name}がこの世に降り立ったぞ！</p>`)
+        add_log(`<p class="game_log king_log" style="color: red">${K_name}がこの世に降り立ったぞ！</p>`);
     }
 }
 // #endregion
@@ -156,25 +160,25 @@ function K_check() {
 // #region buff
 function species_buff() {
     if (world_status["species"] == "human") {
-        world_status["population_mag"] += 0.2
-        world_status["research_mag"] += 0.1
-        world_status["military_mag"] -= 0.1
+        world_status["population_mag"] += 0.2;
+        world_status["research_mag"] += 0.1;
+        world_status["military_mag"] -= 0.1;
     } else if (world_status["species"] == "beastman") {
-        world_status["population_mag"] += 0.3
-        world_status["research_mag"] -= 0.3
-        world_status["military_mag"] -= 0.2
+        world_status["population_mag"] += 0.3;
+        world_status["research_mag"] -= 0.3;
+        world_status["military_mag"] -= 0.2;
     } else if (world_status["species"] == "engel") {
-        world_status["population_mag"] -= 0.3
-        world_status["research_mag"] -= 0.1
-        world_status["military_mag"] += 0.8
+        world_status["population_mag"] -= 0.3;
+        world_status["research_mag"] -= 0.1;
+        world_status["military_mag"] += 0.8;
     } else if (world_status["species"] == "devil") {
-        world_status["population_mag"] -= 0.2
-        world_status["research_mag"] += 0.2
-        world_status["military_mag"] += 0.5
+        world_status["population_mag"] -= 0.2;
+        world_status["research_mag"] += 0.2;
+        world_status["military_mag"] += 0.5;
     } else if (world_status["species"] == "norm") {
-        world_status["population_mag"] += 0.1
-        world_status["research_mag"] += 0.5
-        world_status["military_mag"] -= 0.2
+        world_status["population_mag"] += 0.1;
+        world_status["research_mag"] += 0.5;
+        world_status["military_mag"] -= 0.2;
     }
 }
 
@@ -236,48 +240,49 @@ function lv_waitpromise() {
     
 // }
 async function lvup() {
-    let bst = 0
+    let bst = 0;
     if (world_status["kings"] > 1) {
-        bst = get_kbuffed()
+        bst = get_kbuffed();
     } else {
         bst = get_buffed();
     }
     //スコア計算
     // world_status["score"] = world_status["develop"]*2 + (display_population + (display_research/(research_lv*5)))*0.5; //kari
     world_status["score"] = (Math.max(0, bst[0]/100) + Math.max(0, bst[1]/100) + Math.max(0, bst[2]))*0.5; //kari
-    world_status["score"] *= 100
+    world_status["score"] *= 100;
     world_status["score"] = Math.floor(world_status["score"]);
-    world_status["score"] /= 100 //小数点第２位まで
+    world_status["score"] /= 100; //小数点第２位まで
     let increase = world_status["score"] - oldscore;
-    console.log(`increase:${increase} score:${world_status["score"]}`)
+    console.log(`increase:${increase} score:${world_status["score"]}`);
 
     //レベルアップするかどうか
     if (increase > 500 + 250 * Math.pow(1.5, world_status["lv"] - 1)) { //  <= これが足し算で増えていくとダメ
         // console.log("lvuped",world_status["lv"]);
         oldscore = world_status["score"];
-        increase = 0
+        increase = 0;
         world_status["lv"] += 1;
         // time of select
         //世界の画面.toggle('hidden',false)
-        const selected = await lv_waitpromise()
+        const selected = await lv_waitpromise();
 
-        console.log("before",world_status[selected.to])
+        console.log("before",world_status[selected.to]);
         if (selected.math === "*") {
-            world_status[selected.to] *= selected.up
+            world_status[selected.to] *= selected.up;
         } else if (selected.math === "+") {
-            world_status[selected.to] += selected.up //promiseでtoとupが返ってくる前提
+            world_status[selected.to] += selected.up; //promiseでtoとupが返ってくる前提
         } else if (selected.math === "-") {
-            world_status[selected.to] -= selected.up
+            world_status[selected.to] -= selected.up;
         }
         // console.log("end",world_status[selected.to]) //test
 
+        let updn =""
         if (selected.math == "+") {
-            const updn = "上昇"
+            updn = "上昇";
         } else {
-            const updn = "減少"
+            updn = "減少";
         }
         add_log(`<p class="game_log lvup_log">レベルアップ！ lv: ${world_status["lv"]}<br>
-            ${selected.to}が${selected.up}${updn}しました。</p>`)
+            ${selected.to}が${selected.up}${updn}しました。</p>`);
     }
 }
 //#endregion
@@ -348,7 +353,7 @@ async function bossbattle() {
     const world_num = world_status["World_num"];
 
     battle_earth_img.src = `/assets/Earth_${world_num}.png`;
-    battle_boss_img.src = `/assets/Boss_${world_status["boss_num"]}.png`;
+    battle_boss_img.src = `/assets/Boss_${Math.floor(Math.random*1 + 1)}.png`; //1~1の中から選ぶ
 
     game.classList.add("boss_mode");   //ボス戦レイアウトへ切り替え
 
@@ -360,9 +365,9 @@ async function bossbattle() {
     let turn = 1;
     while (world_status["population"] > 0 && boss.hp > 0) {
         
-        let bst = 0
+        let bst = 0;
         if (world_status["kings"] >= 1) {
-            bst = get_kbuffed()
+            bst = get_kbuffed();
         } else {
             bst = get_buffed();
         }
@@ -418,9 +423,9 @@ let display_timer = null;
 
 // #region 描画ループ
 async function update_status() {
-    let bst = 0
+    let bst = 0;
     if (world_status["kings"] > 1) {
-        bst = get_kbuffed()
+        bst = get_kbuffed();
     } else {
         bst = get_buffed();
     }
@@ -467,16 +472,16 @@ function game_result_disp() {
     人口倍率: ${world_status["population_mag"]}<br>
     研究倍率: ${world_status["research_mag"]}<br>
     </p>
-    `
+    `;
     let Flagment = new DocumentFragment();
-    let child = document.createElement("button")
+    let child = document.createElement("button");
     child.onclick = () => {
         disp_result.classList.add('hidden');
         home.classList.remove('hidden');
     }
-    child.textContent = "ホームに戻る"
-    Flagment.appendChild(child)
-    disp_result.appendChild(Flagment)
+    child.textContent = "ホームに戻る";
+    Flagment.appendChild(child);
+    disp_result.appendChild(Flagment);
 }
 
 // function redef_wst(...targets) {
@@ -486,7 +491,7 @@ function game_result_disp() {
 // #region ゲーム本体
 
 async function playgame() { //引数にアイテムとかのフラグ入れるかも
-    console.log("game start")
+    console.log("game start");
     // ゲーム本体
     //ステータス等の初期設定
     world_status = {
@@ -506,8 +511,8 @@ async function playgame() { //引数にアイテムとかのフラグ入れる�
         "boss_num":1
     };
     // ↑これを関数で変更するのは元とコード量が変わんなそうだからやめた
-    const gameworld_img = `<img src="/assets/Earth_${world_status["World_num"]}.png" alt="world" class="gameworld_img">`
-    oldscore = 0
+    const gameworld_img = `<img src="/assets/Earth_${world_status["World_num"]}.png" alt="world" class="gameworld_img">`;
+    oldscore = 0;
     moto = Date.now();
     status_text.forEach((i) => {
         i.innerHTML = "";
@@ -528,7 +533,7 @@ async function playgame() { //引数にアイテムとかのフラグ入れる�
 
     // プログラム
 
-    species_buff()
+    species_buff();
 
     let game_result = undefined // tryでローカルになるっぽいので宣言
     try {
@@ -545,15 +550,15 @@ async function playgame() { //引数にアイテムとかのフラグ入れる�
                 //リサーチの処理
                 let up = (world_status["population"]/5000) * rand_mag(world_status["research_mag"]) * dt;
                 // console.log(up); デバッグしよう！
-                world_status["research"] += up
+                world_status["research"] += up;
                 if (world_status["research"] < 0) {
-                    world_status["research"] = 0
+                    world_status["research"] = 0;
                 }
 
                 //軍事力の処理
                 const research_ratio = Math.max(0.7, world_status["research"] / (50 * world_status["military_mag"])); //研究力(50 * 軍事倍率)％中のどれくらいが軍人一人に使われているか
                 const per_soldier = research_ratio / Math.max(world_status["military"], 1); // 0除算の防止
-                let onduty = (world_status["population"] / 100) * (world_status["military_mag"] - 1) * per_soldier     * dt; //人口の1.0%から軍事力を選ぶ * per_soldier *dt
+                let onduty = (world_status["population"] / 100) * (world_status["military_mag"] - 1) * per_soldier * dt; //人口の1.0%から軍事力を選ぶ * per_soldier *dt
                 if (!Number.isFinite(onduty)) {
                     console.warn("onduty が数値になりませんでした", { research_ratio, per_soldier, dt });
                     onduty = 0;
@@ -572,7 +577,7 @@ async function playgame() { //引数にアイテムとかのフラグ入れる�
                     moto = Date.now(); //タイマーリセット
                 }
 
-                K_check()
+                K_check();
                 
                 //lvup
                 const lvupstart = Date.now();
@@ -585,8 +590,9 @@ async function playgame() { //引数にアイテムとかのフラグ入れる�
                     boss_result = await bossbattle();
                     boss_moto = Date.now();
                     
-                    lvup_100 = 100 * world_status["boss_num"]
-                    lvup_02 = 0.2 * world_status["boss_num"]
+                    lvup_100 = 100 * world_status["boss_num"];
+                    lvup_02 = 0.2 * world_status["boss_num"];
+                    lvup_list_update()
 
                     if (boss_result === false) {
                         boss_win = false;
@@ -615,10 +621,10 @@ async function playgame() { //引数にアイテムとかのフラグ入れる�
                 //終了処理
                 if (boss_win === false) {
                     resolve(world_status);
-                    return; //world status
+                    return //world status
                 }
                 if (reset === true) {
-                    reset = false
+                    reset = false;
                     resolve(undefined);
                     return
                 }
@@ -641,14 +647,14 @@ async function playgame() { //引数にアイテムとかのフラグ入れる�
             }
         } catch(error) {
             console.error("erroercode\"001\" : " + error);
-            alert("  エラーが発生しました!\n errorcode\"001\" : " + error)
+            alert("  エラーが発生しました!\n errorcode\"001\" : " + error);
         }
     }
 
     game.classList.add('hidden');
     disp_result.classList.remove('hidden');
 
-    await game_result_disp()
+    await game_result_disp();
 
     // console.log(`aaaa:${game_result}`) test
     return game_result;
@@ -723,7 +729,7 @@ worlds.addEventListener("click", (e) => {
                 } 
                 if (!status_window) {
                     console.log('正常に開けませんでした！');
-                    return;
+                    return
                 }
                 status_window.onload = () => {
                 const mainstatus = status_window.document.getElementById("mainstatus");
@@ -748,21 +754,21 @@ worlds.addEventListener("click", (e) => {
                 };
             }
         } catch (e) {
-            console.log("errorcode\"002\" : " + e)
+            console.log("errorcode\"002\" : " + e);
         }
     }
 });
 
-let log_i = 0
+let log_i = 0;
 game_sub.querySelector("button").addEventListener('click', () => {
     game_sub.querySelector("#game_loglist").classList.toggle('hidden');
     console.log("game_log on/off");
     if (log_i === 0) {
         game_sub.style.backgroundColor = "rgba(138, 251, 251, 0.575)";
-        log_i++
+        log_i++;
     } else {
         game_sub.style.backgroundColor = "initial"
-        log_i -= 1
+        log_i -= 1;
     }
 })
 
