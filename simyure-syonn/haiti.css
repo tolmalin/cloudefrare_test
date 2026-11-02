@@ -151,7 +151,7 @@ button {
     }
 }
 
-#normal_view img {
+#normal_center img {
     min-width: 400px;
     max-width: 400px;
 }
@@ -163,9 +163,6 @@ button {
     margin: 0;
     & .game_log {
         margin: 4px 0;
-    }
-    & .hidden {
-        pointer-events: none;
     }
 }
 
@@ -189,11 +186,11 @@ button {
     gap: 12px;
 }
 
-#normal_view {
+#normal_center {
     flex-direction: column;
 }
 
-#game.boss_mode #normal_view {
+#game.boss_mode #normal_center {
     display: none;
 }
 
