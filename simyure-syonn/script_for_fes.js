@@ -17,7 +17,7 @@ let num = 0
 const species_list = ["human","beastman","engel","devil","norm"] //kari
 let lvup_100 = 100
 let lvup_02 = 0.2
-let lvup_list = [["population",lvup_100],["research",lvup_100],["military",lvup_100],["research_mag",lvup_02],["population_mag",lvup_02],["military",lvup_02]]; //lvup選択肢
+let lvup_list = [["population",lvup_100],["research",lvup_100],["military",lvup_100],["research_mag",lvup_02],["population_mag",lvup_02],["military_mag",lvup_02]]; //lvup選択肢
 let lvup_math = ["+","-"]
 
 let world_status = {
