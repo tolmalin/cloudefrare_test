@@ -239,7 +239,7 @@ button {
 }
 
 
-#status {
+.status {
     margin-block-start: initial;
     margin-block-end: initial;
     display: flex;
