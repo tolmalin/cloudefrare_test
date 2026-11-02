@@ -357,7 +357,7 @@ async function bossbattle() {
 
     game.classList.add("boss_mode");   //ボス戦レイアウトへ切り替え
 
-    boss_name_lbl.textContent = `ボス${world_status["boss_num"]}  HP:${Math.floor(boss.hp)}/${Math.floor(boss.max_hp)}`;
+    boss_name_lbl.textContent = `ボス${Math.floor(Math.random()*1 + 1)}  HP:${Math.floor(boss.hp)}/${Math.floor(boss.max_hp)}`;
     update_boss_hpbar(boss);
 
     add_log(`<p class="game_log boss_log">ボス${world_status["boss_num"]}が現れた！(HP:${Math.floor(boss.hp)})</p>`);
