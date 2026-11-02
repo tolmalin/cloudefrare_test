@@ -13,21 +13,12 @@ const hpbar_inner = document.getElementById("hpbar_inner");
 const battle_earth_img = document.getElementById("battle_earth_img");
 const battle_boss_img = document.getElementById("battle_boss_img");
 
-<<<<<<< HEAD
-let num = 0;
-const species_list = ["human","beastman","engel","devil","norm"]; //kari
-let lvup_100 = 100;
-let lvup_02 = 0.2;
-let lvup_list = [["population",lvup_100],["research",lvup_100],["military",lvup_100],["research_mag",lvup_02],["population_mag",lvup_02],["military",lvup_02]]; //lvup選択肢
-let lvup_math = ["+","-"];
-=======
 let num = 0
 const species_list = ["human","beastman","engel","devil","norm"] //kari
 let lvup_100 = 100
 let lvup_02 = 0.2
 let lvup_list = [["population",lvup_100],["research",lvup_100],["military",lvup_100],["research_mag",lvup_02],["population_mag",lvup_02],["military_mag",lvup_02]]; //lvup選択肢
 let lvup_math = ["+","-"]
->>>>>>> a350cb2609414033a8fb5f69fe3e74edb4493c4d
 
 let world_status = {
     "World_num":Math.floor(Math.random()*4 + 1), //0~3 +1
@@ -284,19 +275,11 @@ async function lvup() {
         }
         // console.log("end",world_status[selected.to]) //test
 
-<<<<<<< HEAD
-        let updn =""
-        if (selected.math == "+") {
-            updn = "上昇";
-        } else {
-            updn = "減少";
-=======
         let updn = ""
         if (selected.math == "+") {
             updn = "上昇"
         } else {
             updn = "減少"
->>>>>>> a350cb2609414033a8fb5f69fe3e74edb4493c4d
         }
         add_log(`<p class="game_log lvup_log">レベルアップ！ lv: ${world_status["lv"]}<br>
             ${selected.to}が${selected.up}${updn}しました。</p>`);
