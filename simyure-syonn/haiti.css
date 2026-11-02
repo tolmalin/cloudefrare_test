@@ -149,6 +149,9 @@ button {
             left: 20px;
         }
     }
+    p {
+        color: #ffffff;
+    }
 }
 
 #normal_center img {
@@ -239,7 +242,7 @@ button {
 }
 
 
-#status {
+.status {
     margin-block-start: initial;
     margin-block-end: initial;
     display: flex;
@@ -250,6 +253,7 @@ button {
         padding-right: 50px;
     }
     & p {
+        color: #fff;
         margin-block-start: initial;
         margin-block-end: initial;
     }
