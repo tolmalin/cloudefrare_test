@@ -271,10 +271,11 @@ async function lvup() {
         }
         // console.log("end",world_status[selected.to]) //test
 
+        let updn = ""
         if (selected.math == "+") {
-            const updn = "上昇"
+            updn = "上昇"
         } else {
-            const updn = "減少"
+            updn = "減少"
         }
         add_log(`<p class="game_log lvup_log">レベルアップ！ lv: ${world_status["lv"]}<br>
             ${selected.to}が${selected.up}${updn}しました。</p>`)
