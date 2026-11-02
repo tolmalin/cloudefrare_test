@@ -149,9 +149,6 @@ button {
             left: 20px;
         }
     }
-    & p {
-        collor: #fff;
-    }
 }
 
 #normal_center img {
@@ -253,6 +250,7 @@ button {
         padding-right: 50px;
     }
     & p {
+        color: #fff;
         margin-block-start: initial;
         margin-block-end: initial;
     }
