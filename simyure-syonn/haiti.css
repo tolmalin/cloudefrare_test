@@ -149,6 +149,9 @@ button {
             left: 20px;
         }
     }
+    & p {
+        collor: #fff;
+    }
 }
 
 #normal_center img {
