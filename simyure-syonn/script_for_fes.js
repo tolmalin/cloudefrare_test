@@ -59,7 +59,7 @@ function sleep(ms) {
 }
 
 function lvup_list_update() {
-    lvup_list = [["population",lvup_100],["research",lvup_100],["military",lvup_100],["research_mag",lvup_02],["population_mag",lvup_02],["military",lvup_02]]; //lvup選択肢
+    lvup_list = [["population",lvup_100],["research",lvup_100],["military",lvup_100],["research_mag",lvup_02],["population_mag",lvup_02],["military_mag",lvup_02]]; //lvup選択肢
 }
  
 // ログ追加（上限を超えたら古いものから消す）
