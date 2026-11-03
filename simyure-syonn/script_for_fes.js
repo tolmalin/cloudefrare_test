@@ -351,9 +351,10 @@ async function bossbattle() {
 
     const boss = new Boss(world_status["boss_num"]);
     const world_num = world_status["World_num"];
-
+    const boss_num = Math.floor(Math.random*1 + 1)
+    
     battle_earth_img.src = `/assets/Earth_${world_num}.png`;
-    battle_boss_img.src = `/assets/Boss_${Math.floor(Math.random*1 + 1)}.png`; //1~1の中から選ぶ
+    battle_boss_img.src = `/assets/Boss_${boss_num}.png`; //1~1の中から選ぶ
 
     game.classList.add("boss_mode");   //ボス戦レイアウトへ切り替え
 
@@ -379,12 +380,12 @@ async function bossbattle() {
         world_status["military"] -= enemy_mil_dmg;
         world_status["population"] -= enemy_pop_dmg;
 
-        await earth_attack_animation(world_status["boss_num"]);
+        await earth_attack_animation(boss_num);
         update_boss_hpbar(boss);
         boss_name_lbl.textContent = `第${world_status["boss_num"]}のボス  HP:${Math.max(0, Math.floor(boss.hp))}/${Math.floor(boss.max_hp)}`; //これ毎回描画しないといけないの？
 
         if (boss.hp > 0 && result !== false) {
-            await boss_attack_animation(world_status["World_num"]); // ボス→地球攻撃演出
+            await boss_attack_animation(world_num); // ボス→地球攻撃演出
         }
 
         //1ターンごとにログを流す
@@ -590,8 +591,8 @@ async function playgame() { //引数にアイテムとかのフラグ入れる�
                     boss_result = await bossbattle();
                     boss_moto = Date.now();
                     
-                    lvup_100 = 100 * world_status["boss_num"];
-                    lvup_02 = 0.2 * world_status["boss_num"];
+                    lvup_100 = 100 * Math.floor(world_status["boss_num"]);
+                    lvup_02 = 0.2 * Math.floor(world_status["boss_num"]);
                     lvup_list_update()
 
                     if (boss_result === false) {
