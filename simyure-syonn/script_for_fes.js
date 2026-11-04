@@ -122,36 +122,51 @@ function game_event() {
 
 // K_head_fst = ["この世のすべての ","混沌の",]
 
+class King {
+    constructor(name) {
+        this.name = name
+    }
+}
+
 let K_popl = false;
 let K_mil = false;
 let K_boss = false;
+
+let K_list = {}
 
 function K_check() {
     let K_name = "";
     if (K_popl == false) {
         if (world_status["population"] >= 500000) {
-            world_status["kings"] += 1;
             K_name = "sol";
             K_popl = true;
+
+            let newKing = new King(K_name)
+            K_list["K_popl"] = newKing
         }
     }
     if (K_mil == false) {
         if (world_status["military"] >= 200000) {
-            world_status["kings"] += 1;
             K_name = "Arthur";
             K_mil = true;
+
+            let newKing = new King(K_name)
+            K_list["K_mil"] = newKing
         }
     }
     if (K_boss == false) {
         if (world_status["boss_num"] >= 10) {
-            world_status["kings"] += 1;
             K_name = "The Amalgamation";
             K_boss = true;
+
+            let newKing = new King(K_name)
+            K_list["K_boss"] = newKing
         }
     }
     // ...
     
     if (K_name != "") {
+        world_status["kings"] += 1
         add_log(`<p class="game_log king_log" style="color: red">${K_name}がこの世に降り立ったぞ！</p>`);
     }
 }
