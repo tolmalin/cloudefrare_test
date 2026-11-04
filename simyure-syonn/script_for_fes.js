@@ -351,7 +351,7 @@ async function bossbattle() {
 
     const boss = new Boss(world_status["boss_num"]);
     const world_num = world_status["World_num"];
-    const boss_num = Math.floor(Math.random*1 + 1)
+    const boss_num = Math.floor(Math.random()*1 + 1)
     
     battle_earth_img.src = `/assets/Earth_${world_num}.png`;
     battle_boss_img.src = `/assets/Boss_${boss_num}.png`; //1~1の中から選ぶ
