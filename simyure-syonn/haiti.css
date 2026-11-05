@@ -7,6 +7,9 @@ html, body {
     height: 100%;
     margin: 0;
     overflow: hidden;
+    p {
+        color: #ffffff;
+    }
 }
 
 body #bcscreen {
@@ -149,9 +152,9 @@ button {
             left: 20px;
         }
     }
-    p {
+    /* p {
         color: #ffffff;
-    }
+    } */
 }
 
 #normal_center img {
